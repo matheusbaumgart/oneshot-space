@@ -9,7 +9,7 @@ var moving_left = true  # Track direction
 @onready var area: Area2D = $Area2D  # Reference to Area2D node
 @onready var ui_node = get_tree().current_scene.get_node("UI")  # Reference to UI layer
 
-@onready var explosion_scene = preload("res://scenes/win.tscn")
+@onready var explosion_scene = preload("res://scenes/explosion.tscn")
 @onready var game_over_scene = preload("res://scenes/gameover.tscn")
 @onready var you_win_scene = preload("res://scenes/win.tscn")
 
