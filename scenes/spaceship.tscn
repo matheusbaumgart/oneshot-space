@@ -85,7 +85,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3cgi1")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.504858
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -27, 30, 11, 0, 30, -30, 11)
