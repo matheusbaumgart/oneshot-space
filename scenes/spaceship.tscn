@@ -1,46 +1,57 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfuepag7tvkhh"]
+[gd_scene load_steps=15 format=3 uid="uid://cfuepag7tvkhh"]
 
 [ext_resource type="Script" uid="uid://bykvtwgpog2f2" path="res://scripts/spaceship.gd" id="1_y3uy0"]
-[ext_resource type="Texture2D" uid="uid://fwmav1xlbwkr" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="2_51qc7"]
-[ext_resource type="Texture2D" uid="uid://c2gpxjwm4iiuv" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Idle.png" id="3_51qc7"]
+[ext_resource type="Texture2D" uid="uid://5q25qduw3wmm" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Supercharged Engine - Idle.png" id="2_me4wu"]
 [ext_resource type="Texture2D" uid="uid://cnssyx81xxrqk" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="3_pmkdn"]
-[ext_resource type="Texture2D" uid="uid://b8nxp78a1olkp" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Powering.png" id="4_gsmss"]
+[ext_resource type="Texture2D" uid="uid://85at6ohc8v7v" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Supercharged Engine - Powering.png" id="5_v6qj0"]
+[ext_resource type="Texture2D" uid="uid://rmw8ktlbxoyg" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Supercharged Engine.png" id="6_6i2wf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gsmss"]
-atlas = ExtResource("3_51qc7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_343tk"]
+atlas = ExtResource("2_me4wu")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rowme"]
-atlas = ExtResource("3_51qc7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6qj0"]
+atlas = ExtResource("2_me4wu")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aknta"]
-atlas = ExtResource("3_51qc7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i2wf"]
+atlas = ExtResource("2_me4wu")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3cgi1"]
-atlas = ExtResource("4_gsmss")
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0fvi"]
+atlas = ExtResource("2_me4wu")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iow36"]
+atlas = ExtResource("5_v6qj0")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eye7"]
+atlas = ExtResource("5_v6qj0")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bkiek"]
-atlas = ExtResource("4_gsmss")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tst1b"]
+atlas = ExtResource("5_v6qj0")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yqmem"]
-atlas = ExtResource("4_gsmss")
+[sub_resource type="AtlasTexture" id="AtlasTexture_d22a7"]
+atlas = ExtResource("5_v6qj0")
 region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3cgi1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gsmss")
+"texture": SubResource("AtlasTexture_343tk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rowme")
+"texture": SubResource("AtlasTexture_v6qj0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aknta")
+"texture": SubResource("AtlasTexture_6i2wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0fvi")
 }],
 "loop": true,
 "name": &"idle",
@@ -48,13 +59,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3cgi1")
+"texture": SubResource("AtlasTexture_iow36")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bkiek")
+"texture": SubResource("AtlasTexture_5eye7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yqmem")
+"texture": SubResource("AtlasTexture_tst1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d22a7")
 }],
 "loop": true,
 "name": &"power",
@@ -67,24 +81,25 @@ script = ExtResource("1_y3uy0")
 
 [node name="Spaceship body" type="Node2D" parent="."]
 
+[node name="Engine fire" type="AnimatedSprite2D" parent="Spaceship body"]
+texture_filter = 1
+position = Vector2(0, 13)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3cgi1")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.677021
+
 [node name="Engine" type="Sprite2D" parent="Spaceship body"]
 texture_filter = 1
-position = Vector2(0, 8)
+position = Vector2(0, 12)
 scale = Vector2(2, 2)
-texture = ExtResource("2_51qc7")
+texture = ExtResource("6_6i2wf")
 
 [node name="Main ship" type="Sprite2D" parent="Spaceship body"]
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("3_pmkdn")
-
-[node name="Engine fire" type="AnimatedSprite2D" parent="Spaceship body"]
-texture_filter = 1
-position = Vector2(0, 14)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_3cgi1")
-animation = &"idle"
-autoplay = "idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -27, 30, 11, 0, 30, -30, 11)
