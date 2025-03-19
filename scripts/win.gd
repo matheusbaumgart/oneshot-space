@@ -14,4 +14,5 @@ func _process(delta: float) -> void:
 		reload()
 
 func reload() -> void:
+	AudioManager.resumeAudio()
 	get_tree().reload_current_scene()

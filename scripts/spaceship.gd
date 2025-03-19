@@ -8,6 +8,9 @@ var moving_left = true  # Track direction
 @onready var engine_fire: AnimatedSprite2D = $"Spaceship body/Engine fire"
 @onready var area: Area2D = $Area2D  # Reference to Area2D node
 @onready var ui_node = get_tree().current_scene.get_node("UI")  # Reference to UI layer
+@onready var audio_explosion: AudioStreamPlayer2D = $AudioExplosion
+@onready var audio_win: AudioStreamPlayer2D = $AudioWin
+@onready var audio_move: AudioStreamPlayer2D = $AudioMove
 
 @onready var explosion_scene = preload("res://scenes/explosion.tscn")
 @onready var game_over_scene = preload("res://scenes/gameover.tscn")
@@ -45,13 +48,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		show_you_win_screen()
 
 func explode():
+		# Hide the spaceship instead of removing it
+	visible = false
+	set_process(false)  # Stop movement processing
+	
 	var explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position
 	get_parent().add_child(explosion)
-	
-	# Hide the spaceship instead of removing it
-	visible = false
-	set_process(false)  # Stop movement processing
+	audio_explosion.playing = true
+
 	show_game_over_screen()
 	
 	# Wait for the explosion animation to finish before game over
@@ -63,6 +68,8 @@ func show_game_over_screen():
 	ui_node.add_child(game_over_ui)
 
 func show_you_win_screen():
+	AudioManager.stopAudio()
+	audio_win.playing = true
 	set_process(false)  # Stop movement processing
 	var you_win_ui = you_win_scene.instantiate()
 	ui_node.add_child(you_win_ui)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://csemfbgi8r132"
+path="res://.godot/imported/YLehki - Main Theme.wav-92977b08358e7de94d60bf300b937980.sample"
+
+[deps]
+
+source_file="res://sound/YLehki - Main Theme.wav"
+dest_files=["res://.godot/imported/YLehki - Main Theme.wav-92977b08358e7de94d60bf300b937980.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

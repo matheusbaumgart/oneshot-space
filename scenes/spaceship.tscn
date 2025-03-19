@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfuepag7tvkhh"]
+[gd_scene load_steps=17 format=3 uid="uid://cfuepag7tvkhh"]
 
 [ext_resource type="Script" uid="uid://bykvtwgpog2f2" path="res://scripts/spaceship.gd" id="1_y3uy0"]
 [ext_resource type="Texture2D" uid="uid://5q25qduw3wmm" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Supercharged Engine - Idle.png" id="2_me4wu"]
 [ext_resource type="Texture2D" uid="uid://cnssyx81xxrqk" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="3_pmkdn"]
 [ext_resource type="Texture2D" uid="uid://85at6ohc8v7v" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Supercharged Engine - Powering.png" id="5_v6qj0"]
 [ext_resource type="Texture2D" uid="uid://rmw8ktlbxoyg" path="res://images/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Supercharged Engine.png" id="6_6i2wf"]
+[ext_resource type="AudioStream" uid="uid://075jfey0hi1v" path="res://sound/explosion-312361.mp3" id="6_343tk"]
+[ext_resource type="AudioStream" uid="uid://c5jmekiwr3lwr" path="res://sound/you-win-sequence-3-183950.mp3" id="7_v6qj0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_343tk"]
 atlas = ExtResource("2_me4wu")
@@ -109,5 +111,14 @@ polygon = PackedVector2Array(0, -27, 30, 11, 0, 30, -30, 11)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 scale = Vector2(1.1, 1.1)
 polygon = PackedVector2Array(0, -27, 30, 11, 0, 30, -30, 11)
+
+[node name="AudioExplosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_343tk")
+
+[node name="AudioWin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_v6qj0")
+
+[node name="AudioMove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_343tk")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
