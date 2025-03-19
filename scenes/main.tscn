@@ -49,6 +49,12 @@ position = Vector2(85, 287)
 [node name="Asteroid6" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(421, 371)
 
+[node name="Asteroid12" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(464, 580)
+
+[node name="Asteroid11" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(602, 245)
+
 [node name="Asteroid7" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(248, 98)
 
@@ -59,10 +65,11 @@ position = Vector2(108, 634)
 position = Vector2(273, 799)
 
 [node name="Asteroid10" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(32, 34)
 
 [node name="Finishline" type="Area2D" parent="." groups=["finish_line"]]
 script = ExtResource("3_h2yge")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finishline"]
-position = Vector2(320, -38)
+position = Vector2(320, -47)
 shape = SubResource("RectangleShape2D_0xm2m")

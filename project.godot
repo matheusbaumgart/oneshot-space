@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="OneShot Space"
-run/main_scene="uid://b47siulyet5ib"
+run/main_scene="uid://brsjsje34sskg"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]
