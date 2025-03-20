@@ -25,24 +25,31 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		if not is_moving:
-			audio_move_start.play()  # Play start sound once
-			await audio_move_start.finished  # Wait for start sound to finish
-			audio_move_hold.play()  # Play looping hold sound
 			is_moving = true
+			audio_move_start.play()
+			# Don't await; start the hold sound after a short delay instead
+			get_tree().create_timer(0.1).timeout.connect(_play_engine_hold)
+
 		engine_fire.play('power')
 		velocity.y = MOVE_UP_FORCE
 		velocity.x = -REDUCED_SPEED if moving_left else REDUCED_SPEED  # Slower horizontal movement
+
 	else:
 		if is_moving:
 			audio_move_hold.stop()
-			audio_move_end.play()  # Play stop sound once
+			audio_move_end.play()
 			is_moving = false
+
 		engine_fire.play('idle')
 		velocity.y = 0
 		velocity.x = -SPEED if moving_left else SPEED
-	
+
 	move_and_slide()
 	check_screen_bounds()
+
+func _play_engine_hold():
+	if is_moving and not audio_move_hold.playing:
+		audio_move_hold.play()
 
 func check_screen_bounds():
 	var screen_width = get_viewport_rect().size.x
