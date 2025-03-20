@@ -44,10 +44,22 @@ There was no more water left and everybody jumped on a rocketship and went away 
 
 Shwosh! There was fire at the back of the rocket.
 
-That's why they left earth.
+That's why they left earth."
+vertical_alignment = 1
 
-
-— Written by Eliana C, 7yo."
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = 770.0
+offset_right = -72.0
+offset_bottom = -302.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.364084, 0.364084, 0.364084, 1)
+theme_override_font_sizes/normal_font_size = 28
+text = "— Written by Eliana C. (7yo)"
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer"]

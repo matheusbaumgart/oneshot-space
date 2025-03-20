@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b47siulyet5ib"]
+[gd_scene load_steps=6 format=3 uid="uid://b47siulyet5ib"]
 
 [ext_resource type="PackedScene" uid="uid://cfuepag7tvkhh" path="res://scenes/spaceship.tscn" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://bfysrtvlu2w7u" path="res://images/_23db0d3d-3ebb-4e95-ad60-6960684355f2.jpeg" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://t5lx6guope3m" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dyvs05368sgsd" path="res://scenes/asteroid.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dbffqe3kqq7j7" path="res://scripts/finish_line.gd" id="3_h2yge"]
@@ -20,15 +19,6 @@ offset_bottom = 1200.0
 size_flags_horizontal = 6
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
-
-[node name="Background" type="TextureRect" parent="."]
-visible = false
-offset_left = -317.0
-offset_top = -52.0
-offset_right = 707.0
-offset_bottom = 972.0
-scale = Vector2(1.36096, 1.36096)
-texture = ExtResource("1_jyhfs")
 
 [node name="Spaceship" parent="." instance=ExtResource("1_0xm2m")]
 position = Vector2(324, 1092)
