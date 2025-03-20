@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1d1g2am7ydgf"]
+[gd_scene load_steps=4 format=3 uid="uid://c1d1g2am7ydgf"]
 
 [ext_resource type="Theme" uid="uid://di8w4yqjo7osd" path="res://theme.tres" id="1_dy3ie"]
 [ext_resource type="Script" uid="uid://bwf0nt18h1xkf" path="res://scripts/gameover.gd" id="2_2mkfd"]
+[ext_resource type="PackedScene" uid="uid://dukvk5ibhevo6" path="res://scenes/components/pulsing_label.tscn" id="3_2mkfd"]
 
 [node name="Gameover" type="Control"]
 layout_mode = 3
@@ -44,8 +45,6 @@ layout_mode = 2
 text = "Game Over!"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="PulsingLabel" parent="VBoxContainer" instance=ExtResource("3_2mkfd")]
 layout_mode = 2
-text = "Try again"
-
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+text = "Press \"space\" to restart"

@@ -13,6 +13,9 @@ config_version=5
 config/name="OneShot Space"
 run/main_scene="uid://brsjsje34sskg"
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+config/icon="uid://dffsf64l5j6sh"
 
 [autoload]
 

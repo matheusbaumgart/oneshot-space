@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dukvk5ibhevo6"]
+
+[ext_resource type="Theme" uid="uid://di8w4yqjo7osd" path="res://theme.tres" id="1_681pp"]
+[ext_resource type="Script" uid="uid://ck7mkely887vw" path="res://scenes/components/pulsing_label.gd" id="2_4vs42"]
+
+[node name="PulsingLabel" type="Label"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 374.0
+offset_bottom = 416.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_681pp")
+text = "Press \"space\" to start"
+horizontal_alignment = 1
+script = ExtResource("2_4vs42")

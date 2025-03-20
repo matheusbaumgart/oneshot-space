@@ -14,6 +14,7 @@ var is_moving: bool = false  # Track movement state
 @onready var audio_move_start: AudioStreamPlayer2D = $AudioMoveStart
 @onready var audio_move_hold: AudioStreamPlayer2D = $AudioMoveHold
 @onready var audio_move_end: AudioStreamPlayer2D = $AudioMoveEnd
+@onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 
 @onready var explosion_scene = preload("res://scenes/explosion.tscn")
 @onready var game_over_scene = preload("res://scenes/gameover.tscn")
@@ -27,13 +28,11 @@ func _process(delta):
 		if not is_moving:
 			is_moving = true
 			audio_move_start.play()
-			# Don't await; start the hold sound after a short delay instead
-			get_tree().create_timer(0.1).timeout.connect(_play_engine_hold)
+			get_tree().create_timer(0.1).timeout.connect(_play_engine_hold)  # Start hold sound after a delay
 
 		engine_fire.play('power')
 		velocity.y = MOVE_UP_FORCE
 		velocity.x = -REDUCED_SPEED if moving_left else REDUCED_SPEED  # Slower horizontal movement
-
 	else:
 		if is_moving:
 			audio_move_hold.stop()
@@ -46,10 +45,6 @@ func _process(delta):
 
 	move_and_slide()
 	check_screen_bounds()
-
-func _play_engine_hold():
-	if is_moving and not audio_move_hold.playing:
-		audio_move_hold.play()
 
 func check_screen_bounds():
 	var screen_width = get_viewport_rect().size.x
@@ -67,7 +62,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		show_you_win_screen()
 
 func explode():
-	audio_explosion.playing = true
+	audio_explosion.play()
+	
+	# Disable collision
+	collision_polygon_2d.set_deferred("disabled", true)
 	
 	# Hide the spaceship instead of removing it
 	visible = false
@@ -89,7 +87,11 @@ func show_game_over_screen():
 
 func show_you_win_screen():
 	AudioManager.stopAudio()
-	audio_win.playing = true
+	audio_win.play()
 	set_process(false)  # Stop movement processing
 	var you_win_ui = you_win_scene.instantiate()
 	ui_node.add_child(you_win_ui)
+
+func _play_engine_hold():
+	if is_moving and not audio_move_hold.playing:
+		audio_move_hold.play()
