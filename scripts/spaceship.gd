@@ -4,13 +4,16 @@ const SPEED = 340  # Speed moving left/right
 const MOVE_UP_FORCE = -340  # Upward movement when holding space
 const REDUCED_SPEED = 30  # Slower horizontal movement when moving up
 var moving_left = true  # Track direction
+var is_moving: bool = false  # Track movement state
 
 @onready var engine_fire: AnimatedSprite2D = $"Spaceship body/Engine fire"
 @onready var area: Area2D = $Area2D  # Reference to Area2D node
 @onready var ui_node = get_tree().current_scene.get_node("UI")  # Reference to UI layer
 @onready var audio_explosion: AudioStreamPlayer2D = $AudioExplosion
 @onready var audio_win: AudioStreamPlayer2D = $AudioWin
-@onready var audio_move: AudioStreamPlayer2D = $AudioMove
+@onready var audio_move_start: AudioStreamPlayer2D = $AudioMoveStart
+@onready var audio_move_hold: AudioStreamPlayer2D = $AudioMoveHold
+@onready var audio_move_end: AudioStreamPlayer2D = $AudioMoveEnd
 
 @onready var explosion_scene = preload("res://scenes/explosion.tscn")
 @onready var game_over_scene = preload("res://scenes/gameover.tscn")
@@ -21,10 +24,19 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("move_up"):
+		if not is_moving:
+			audio_move_start.play()  # Play start sound once
+			await audio_move_start.finished  # Wait for start sound to finish
+			audio_move_hold.play()  # Play looping hold sound
+			is_moving = true
 		engine_fire.play('power')
 		velocity.y = MOVE_UP_FORCE
 		velocity.x = -REDUCED_SPEED if moving_left else REDUCED_SPEED  # Slower horizontal movement
 	else:
+		if is_moving:
+			audio_move_hold.stop()
+			audio_move_end.play()  # Play stop sound once
+			is_moving = false
 		engine_fire.play('idle')
 		velocity.y = 0
 		velocity.x = -SPEED if moving_left else SPEED
@@ -48,14 +60,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		show_you_win_screen()
 
 func explode():
-		# Hide the spaceship instead of removing it
+	audio_explosion.playing = true
+	
+	# Hide the spaceship instead of removing it
 	visible = false
 	set_process(false)  # Stop movement processing
 	
 	var explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position
 	get_parent().add_child(explosion)
-	audio_explosion.playing = true
 
 	show_game_over_screen()
 	
