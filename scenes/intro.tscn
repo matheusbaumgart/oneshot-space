@@ -31,9 +31,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 76.0
-offset_top = 61.0
+offset_top = 109.0
 offset_right = -72.0
-offset_bottom = -291.0
+offset_bottom = -486.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 28
@@ -48,19 +48,43 @@ Shwosh! There was fire at the back of the rocket.
 That's why they left earth."
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 76.0
-offset_top = 770.0
-offset_right = -72.0
-offset_bottom = -302.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0.364084, 0.364084, 0.364084, 1)
-theme_override_font_sizes/normal_font_size = 28
-text = "— Written by Eliana C. (7yo)"
-vertical_alignment = 1
-
 [node name="PulsingLabel" parent="CanvasLayer" instance=ExtResource("4_i2l1n")]
+offset_top = 218.0
+offset_bottom = 260.0
+theme_override_colors/font_color = Color(0.848901, 0.550794, 0.316035, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 77.0
+offset_top = 1043.0
+offset_right = 267.0
+offset_bottom = 1071.0
+theme_override_colors/font_color = Color(0.43712, 0.43712, 0.43712, 1)
+theme_override_font_sizes/font_size = 20
+text = "Game Design & Dev"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 77.0
+offset_top = 1079.0
+offset_right = 249.0
+offset_bottom = 1107.0
+theme_override_colors/font_color = Color(0.718381, 0.718381, 0.718381, 1)
+theme_override_font_sizes/font_size = 20
+text = "Matt Costa (Dad)"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 348.0
+offset_top = 1043.0
+offset_right = 520.0
+offset_bottom = 1071.0
+theme_override_colors/font_color = Color(0.43712, 0.43712, 0.43712, 1)
+theme_override_font_sizes/font_size = 20
+text = "Story"
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 348.0
+offset_top = 1079.0
+offset_right = 586.0
+offset_bottom = 1109.0
+theme_override_colors/font_color = Color(0.718381, 0.718381, 0.718381, 1)
+theme_override_font_sizes/font_size = 20
+text = "Eliana Costa (7yo)"
