@@ -2,12 +2,13 @@ extends CharacterBody2D
 
 @export var SPEED = 200  # Speed moving left/right
 @export var MOVE_UP_FORCE = -380  # Upward movement when holding space
+@export var FALL_SPEED = 10  # Downward movement when idle
 @export var REDUCED_SPEED = 30  # Slower horizontal movement when moving up
 
 # FUEL
 @export var max_fuel: float = 100.0
-@export var fuel_depletion_rate: float = 8.0  # units per second while thrusting
-@export var idle_fuel_rate: float = 1.0  # units per second for side movement
+@export var fuel_depletion_rate: float = 9.5  # units per second while thrusting
+@export var idle_fuel_rate: float = 0.8  # units per second for side movement
 @export var fuel: float = max_fuel  # starts full
 
 @onready var engine_fire: AnimatedSprite2D = $"Spaceship body/Engine fire"
@@ -60,7 +61,7 @@ func _process(delta):
 		fuel = max(0, fuel - idle_fuel_rate * delta)
 
 		engine_fire.play('idle')
-		velocity.y = 0
+		velocity.y = FALL_SPEED  # Add downward movement when not thrusting
 		velocity.x = -SPEED if moving_left else SPEED
 
 	move_and_slide()

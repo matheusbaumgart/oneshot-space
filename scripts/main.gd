@@ -11,5 +11,4 @@ func _input(event):
 			Input.action_release("move_up")  # Simulate space key release
 
 func _process(delta):
-	print(spaceship.fuel)
 	fuel_bar.value = spaceship.fuel  # for progress bar

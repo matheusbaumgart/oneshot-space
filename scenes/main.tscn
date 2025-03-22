@@ -20,18 +20,35 @@ script = ExtResource("1_tbgi4")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
-offset_left = 1.0
-offset_right = 649.0
-offset_bottom = 27.0
+offset_left = 13.0
+offset_top = 1114.0
+offset_right = 637.0
+offset_bottom = 1141.0
 theme_override_styles/background = SubResource("StyleBoxFlat_jyhfs")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tbgi4")
 allow_greater = true
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
+[node name="Label" type="Label" parent="UI"]
+offset_left = 18.0
+offset_top = 1116.0
+offset_right = 58.0
+offset_bottom = 1139.0
+text = "Fuel"
+
+[node name="Border" type="ColorRect" parent="."]
 offset_left = 1.0
 offset_top = -5819.0
 offset_right = 649.0
-offset_bottom = 1181.0
+offset_bottom = 1175.0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+offset_left = 4.0
+offset_top = -5821.0
+offset_right = 646.0
+offset_bottom = 1177.0
 size_flags_horizontal = 6
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
@@ -43,6 +60,7 @@ SPEED = 180
 [node name="Camera2D" type="Camera2D" parent="Spaceship"]
 position = Vector2(-3, -492)
 limit_left = 649
+limit_top = -2699
 limit_right = 649
 limit_smoothed = true
 position_smoothing_speed = 0.2
@@ -82,7 +100,7 @@ position = Vector2(464, 580)
 position = Vector2(602, 245)
 
 [node name="Asteroid7" parent="Asteroids" instance=ExtResource("2_0xm2m")]
-position = Vector2(248, 98)
+position = Vector2(238, 122)
 
 [node name="Asteroid8" parent="Asteroids" instance=ExtResource("2_0xm2m")]
 position = Vector2(125, 634)
@@ -204,6 +222,12 @@ rotation = -0.125885
 
 [node name="Finishline" type="Area2D" parent="." groups=["finish_line"]]
 script = ExtResource("3_h2yge")
+
+[node name="ColorRect" type="ColorRect" parent="Finishline"]
+offset_top = -2704.0
+offset_right = 649.0
+offset_bottom = -2683.0
+color = Color(1.02278e-06, 0.41525, 0.0304973, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finishline"]
 position = Vector2(320, -2693)

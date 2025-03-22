@@ -39,6 +39,7 @@ window/size/viewport_height=1152
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+window/handheld/orientation=1
 
 [input]
 
