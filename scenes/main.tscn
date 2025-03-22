@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b47siulyet5ib"]
+[gd_scene load_steps=9 format=3 uid="uid://b47siulyet5ib"]
 
 [ext_resource type="PackedScene" uid="uid://cfuepag7tvkhh" path="res://scenes/spaceship.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://t5lx6guope3m" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dyvs05368sgsd" path="res://scenes/asteroid.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dbffqe3kqq7j7" path="res://scripts/finish_line.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dkefow5tcf4n3" path="res://scenes/power_up.tscn" id="5_tbgi4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
 bg_color = Color(0.0807833, 0.0807834, 0.0807833, 1)
@@ -232,3 +233,20 @@ color = Color(1.02278e-06, 0.41525, 0.0304973, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finishline"]
 position = Vector2(320, -2693)
 shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="PowerUp" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(237, -296)
+value = 1.0
+
+[node name="PowerUp3" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(461, -696)
+value = 2.0
+
+[node name="PowerUp4" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(65, -1162)
+value = 3.0
+
+[node name="PowerUp2" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(169, 807)
+scale = Vector2(1.00527, 1.00365)
+value = 2.0

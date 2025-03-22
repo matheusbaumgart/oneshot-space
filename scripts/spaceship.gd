@@ -27,6 +27,7 @@ extends CharacterBody2D
 
 var moving_left = true  # Track direction
 var is_moving: bool = false  # Track movement state
+var is_invincible: bool = false
 
 func _ready():
 	GameManager.start_timer()  # Start tracking time when the game begins
@@ -77,7 +78,8 @@ func check_screen_bounds():
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("asteroid"):
-		explode()
+		if not is_invincible:
+			explode()
 	elif area.is_in_group("finish_line"):
 		var time_taken = GameManager.stop_timer()  # Stop timer and get elapsed time
 		show_you_win_screen()
@@ -120,3 +122,33 @@ func _play_engine_hold():
 func out_of_fuel():
 	set_process(false)  # Stop movement processing
 	show_game_over_screen()
+
+func activate_star(duration: float):
+	# Activate both shield and speed boost
+	is_invincible = true
+	
+	# Speed boost
+	var original_speed = SPEED
+	var original_reduced = REDUCED_SPEED
+	SPEED *= 1.5
+	REDUCED_SPEED *= 1.5
+	
+	# Visual effect (blinking)
+	var blink_timer = duration
+	while blink_timer > 0:
+		modulate = Color(1, 1, 0)  # yellow/gold for star power
+		await get_tree().create_timer(0.1).timeout
+		modulate = Color(1, 1, 0, 0.5)  # semi-transparent yellow
+		await get_tree().create_timer(0.1).timeout
+		blink_timer -= 0.2
+	
+	# Reset everything
+	is_invincible = false
+	SPEED = original_speed
+	REDUCED_SPEED = original_reduced
+	modulate = Color(1, 1, 1, 1)  # reset to default
+
+func activate_slow_time(duration: float):
+	Engine.time_scale = 0.5
+	await get_tree().create_timer(duration).timeout
+	Engine.time_scale = 1.0
