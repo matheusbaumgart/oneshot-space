@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
-const SPEED = 340  # Speed moving left/right
-const MOVE_UP_FORCE = -340  # Upward movement when holding space
-const REDUCED_SPEED = 30  # Slower horizontal movement when moving up
-var moving_left = true  # Track direction
-var is_moving: bool = false  # Track movement state
+@export var SPEED = 200  # Speed moving left/right
+@export var MOVE_UP_FORCE = -380  # Upward movement when holding space
+@export var REDUCED_SPEED = 30  # Slower horizontal movement when moving up
+
+# FUEL
+@export var max_fuel: float = 100.0
+@export var fuel_depletion_rate: float = 8.0  # units per second while thrusting
+@export var idle_fuel_rate: float = 1.0  # units per second for side movement
+@export var fuel: float = max_fuel  # starts full
 
 @onready var engine_fire: AnimatedSprite2D = $"Spaceship body/Engine fire"
 @onready var area: Area2D = $Area2D  # Reference to Area2D node
@@ -20,24 +24,40 @@ var is_moving: bool = false  # Track movement state
 @onready var game_over_scene = preload("res://scenes/gameover.tscn")
 @onready var you_win_scene = preload("res://scenes/win.tscn")
 
+var moving_left = true  # Track direction
+var is_moving: bool = false  # Track movement state
+
 func _ready():
 	GameManager.start_timer()  # Start tracking time when the game begins
 
 func _process(delta):
+	if fuel <= 0:
+		# No fuel left, trigger game over
+		velocity = Vector2.ZERO
+		engine_fire.play('idle')
+		out_of_fuel()
+		return
+		
 	if Input.is_action_pressed("move_up"):
 		if not is_moving:
 			is_moving = true
 			audio_move_start.play()
-			get_tree().create_timer(0.1).timeout.connect(_play_engine_hold)  # Start hold sound after a delay
+			get_tree().create_timer(0.1).timeout.connect(_play_engine_hold)
+
+		# Deplete fuel while thrusting
+		fuel = max(0, fuel - fuel_depletion_rate * delta)
 
 		engine_fire.play('power')
 		velocity.y = MOVE_UP_FORCE
-		velocity.x = -REDUCED_SPEED if moving_left else REDUCED_SPEED  # Slower horizontal movement
+		velocity.x = -REDUCED_SPEED if moving_left else REDUCED_SPEED
 	else:
 		if is_moving:
 			audio_move_hold.stop()
 			audio_move_end.play()
 			is_moving = false
+
+		# Deplete smaller amount of fuel for side movement
+		fuel = max(0, fuel - idle_fuel_rate * delta)
 
 		engine_fire.play('idle')
 		velocity.y = 0
@@ -95,3 +115,7 @@ func show_you_win_screen():
 func _play_engine_hold():
 	if is_moving and not audio_move_hold.playing:
 		audio_move_hold.play()
+
+func out_of_fuel():
+	set_process(false)  # Stop movement processing
+	show_game_over_screen()
